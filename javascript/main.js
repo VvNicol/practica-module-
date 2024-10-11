@@ -61,7 +61,7 @@ function enviar() {
 
     gestionarBtnLimpiar();
 }
-
+//gestiona el estado del grid si esta activo o no
 function gestionarBtnLimpiar() {
     let limpiarGrid = document.getElementById('limpiar');
     let zonas = ['A', 'B', 'C', 'D'];
@@ -76,6 +76,7 @@ function gestionarBtnLimpiar() {
     limpiarGrid.disabled = !tieneContenido;
 }
 
+//Funcionalidad cuando esta activo
 function limpiarTodo() {
     let zonas = ['A', 'B', 'C', 'D'];
 
