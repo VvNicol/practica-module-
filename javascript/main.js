@@ -40,7 +40,7 @@ function enviar() {
     // Seleccionar el elemento de zona donde se agregará el contenido
     let zonaElement = document.getElementById(zona);
     // Crear y agregar el contenido según la entrada seleccionada
-    
+    zonaElement.innerHTML = '';
 
     switch (input) {
         case 'img':
@@ -59,19 +59,38 @@ function enviar() {
             return;
     }
 
+    gestionarBtnLimpiar();
 }
-function btnLimpiar(){
-    let btnLimpiar = document.getElementById('limpiar')
-    btnLimpiar.disabled = true;
 
-    let zona = seleZona();
-    let zonaLimpiar = document.getElementById(zona);
+function gestionarBtnLimpiar() {
+    let limpiarGrid = document.getElementById('limpiar');
+    let zonas = ['A', 'B', 'C', 'D'];
 
-    zonaLimpiar.innerHTML = '';
-    return btnLimpiar
+    // Verificar si alguna zona tiene contenido
+    let tieneContenido = zonas.some(z => {
+        let zonaElement = document.getElementById(z);
+        return zonaElement.innerHTML.trim() !== ''; // Verificar si hay contenido
+    });
 
+    // Activar o desactivar el botón "Limpiar Grid" según si hay contenido
+    limpiarGrid.disabled = !tieneContenido;
 }
+
+function limpiarTodo() {
+    let zonas = ['A', 'B', 'C', 'D'];
+
+    zonas.forEach(z => {
+        let zonaElement = document.getElementById(z);
+        zonaElement.innerHTML = ''; // Limpiar el contenido
+    });
+
+    // Desactivar el botón "Limpiar Grid" después de limpiar
+    let limpiarGrid = document.getElementById('limpiar');
+    limpiarGrid.disabled = true;
+}
+
 
 window.seleZona = seleZona;
 window.seleInput = seleInput;
 window.enviar = enviar;
+window.limpiarTodo = limpiarTodo;
